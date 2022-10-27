@@ -5,14 +5,13 @@ public class Player {
     private char[][] playerBoard;
     private char[][] oppBoard;
     private Role role;
+    private GameState state;
     
     public Player()
     {
         playerBoard = new char[10][10];
         oppBoard = new char[10][10];
-
-
-        role = new Server();
+        role = new DefaultRole();
     }
 
     //sets up both boards to all "~"
@@ -40,7 +39,9 @@ public class Player {
             //send shot to opponent, update board to hit/miss based on response
         }
         else
-        {}
+        {
+            System.out.println("Invalid Input");
+        }
     }
 
     //print current gameboard to console (which = "Player" or "Opponent")
@@ -77,6 +78,28 @@ public class Player {
             }
         }
         else
-        {}
+        {
+            System.out.println("Invalid input");
+        }
+    }
+
+    public void setState(GameState setState)
+    {
+        state = setState;
+    }
+
+    public String getState()
+    {
+        return state.getState();
+    }
+
+    public void setRole(Role setRole)
+    {
+        role = setRole;
+    }
+
+    public String getRole()
+    {
+        return role.getType();
     }
 }
